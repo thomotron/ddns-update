@@ -6,10 +6,10 @@ from configparser import ConfigParser
 
 parser = ArgumentParser()
 parser.add_argument('-c', '--config', help='path to the config file')
-parser.parse_args()
+args = parser.parse_args()
 
 try:
-    config_path = parser.config
+    config_path = args.config
 except:
     config_path = 'config.ini'
 
