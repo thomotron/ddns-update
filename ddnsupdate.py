@@ -5,20 +5,15 @@ from argparse import ArgumentParser
 from configparser import ConfigParser
 
 parser = ArgumentParser()
-parser.add_argument('-c', '--config', help='path to the config file')
+parser.add_argument('-c', '--config', help='path to the config file', default='config.ini')
 args = parser.parse_args()
 
-try:
-    config_path = args.config
-except:
-    config_path = 'config.ini'
-
 config = ConfigParser()
-config.read(config_path)
+config.read(args.config)
 
 if not config.sections():
     print('No existing config was found')
-    print('Copy the following blank template into ' + config_path + ' and fill in the blanks:')
+    print('Copy the following blank template into ' + args.config + ' and fill in the blanks:')
     print('[Credentials]\n' + \
           'host = \n' + \
           'domain = \n' + \
